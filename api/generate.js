@@ -12,7 +12,6 @@ module.exports = function () {
 
     return {
         product: _.times( 10, function ( id ) {
-            var img = faker.image.image();
             var title = productName();
             return {
                 id: id+1,

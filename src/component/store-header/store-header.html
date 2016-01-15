@@ -3,7 +3,7 @@
     <div class="col-sm-10 text-right">
         <div style="padding-top: 15">
             <a [routerLink]="['Cart']" class="btn btn-success">
-                qty/price
+                Cart Items: {{totals.qty}} / ${{totals.total | number: '.2'}}
             </a>
         </div>
     </div>
