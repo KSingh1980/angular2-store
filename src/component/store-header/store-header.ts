@@ -13,7 +13,7 @@ export class StoreHeader {
     constructor(private cartService: CartService) {
         this.totals = {};
         cartService.cart$.subscribe(updatedCart => {
-            this.totals = cartService.cartTotals(); 
+            this.totals = cartService.cartTotals();
         });
     }
     ngOnInit() {

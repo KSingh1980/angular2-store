@@ -4,7 +4,10 @@
     <p>{{ product.description }}</p>
     <p>${{ product.price }}  <span *ngIf="product.cart && product.cart.length" class="text-success">
             ({{ product.cart[0].qty }} in cart)</span></p>
-    <a class="btn btn-default" (click)="addItem(product)">
-        Add To Cart
-    </a>
+    <div class="btn-group">
+        <a class="btn btn-default" [routerLink]="['Home']">Continue Shopping</a>
+        <a class="btn btn-default" (click)="addItem(product)">
+            Add To Cart
+        </a>
+    </div>            
 </div>
