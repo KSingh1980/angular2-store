@@ -1,0 +1,10 @@
+<div>
+    <h2>{{ product.title }}</h2>
+    <img src="http://placehold.it/250x250" alt=""/>
+    <p>{{ product.description }}</p>
+    <p>${{ product.price }}  <span *ngIf="product.cart" class="text-success">
+            ({{ product.cart[0].qty }} in cart)</span></p>
+    <a class="btn btn-default" (click)="addItem(product)">
+        Add To Cart
+    </a>
+</div>

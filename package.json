@@ -1,0 +1,32 @@
+{
+  "name": "fluxtong2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "webpack-dev-server",
+    "json-server": "./node_modules/.bin/json-server ./api/generate.js -q --port 9000",
+    "start": "./node_modules/.bin/npm-run-all --parallel server json-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "^2.0.0-beta.1",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "^5.0.0-beta.0",
+    "zone.js": "^0.5.10"
+  },
+  "devDependencies": {
+    "faker": "^3.0.1",
+    "json-server": "^0.8.6",
+    "lodash": "^4.0.0",
+    "npm-run-all": "^1.4.0",
+    "raw-loader": "^0.5.1",
+    "ts-loader": "^0.7.2",
+    "typescript": "^1.7.5",
+    "webpack": "^1.12.10",
+    "webpack-dev-server": "^1.14.0"
+  }
+}

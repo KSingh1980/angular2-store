@@ -1,0 +1,17 @@
+<div catalog class="row">
+  <div style="border-bottom: 1px solid #ccc; padding-bottom: 15px" class="col-xs-6 col-sm-4 col-md-3" *ngFor="#product of products">
+        <div>
+            <h4>{{ product.title }}</h4>
+            <img src="http://placehold.it/250x250" width="100%" class="img-responsive" />
+            <p>{{ product.summary }}</p>
+            <p>${{ product.price }} <span *ngIf="product.cart.length" class="text-success">
+            ({{ product.cart[0].qty }} in cart)</span></p>
+            <div class="btn-group">
+                <a class="btn btn-default" [routerLink]="['ProductDetail', {productId: product.id}]">Learn More</a>
+                <a class="btn btn-default" (click)="addItem(product)">
+                    Add To Cart
+                </a>
+            </div>
+        </div>
+  </div>
+</div>
