@@ -34,6 +34,10 @@ export class CartService {
         this.cart$.subscribe();
     }
 
+    getProduct(id: string) {
+        return this.transact('get', `${BASE_URL}/product/${id}/?_embed=cart`);
+    }
+
     getCart() {
         this.http.get(`${BASE_URL}/cart`).subscribe(data => {
             this._cartStore.cart = data.json();

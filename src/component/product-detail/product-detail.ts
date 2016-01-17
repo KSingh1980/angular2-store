@@ -1,10 +1,10 @@
 import { Component } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
-import { StoreService }  from '../../service/store-service';
 import { CartService }  from '../../service/cart-service';
+import { CartButton } from  '../cart/cart-button';
 
 @Component({
-    directives: [RouterLink],
+    directives: [RouterLink, CartButton],
     selector: 'product-detail',
     template: require('./product-detail.html')
 })
@@ -13,21 +13,19 @@ export class ProductDetail {
     product: any;
     productId: string;
 
-    constructor(private storeService:StoreService, private cartService:CartService, private routeParams:RouteParams) {
+    constructor(private cartService: CartService, private routeParams: RouteParams) {
         this.product = {};
         this.productId = this.routeParams.get('productId');
+        cartService.cart$.subscribe(updatedCart => {
+            this.getProduct();
+        });
     }
 
     getProduct() {
-        this.storeService.getProduct(this.productId).then(res => this.product = res);
-        this.cartService.getCart();
+        this.cartService.getProduct(this.productId).subscribe(res => this.product = res);
     }
 
     ngOnInit() {
-        this.getProduct()
-    }
-
-    addItem(product) {
-        this.storeService.addItem(product).then(data => this.getProduct());
+        this.getProduct();
     }
 }
