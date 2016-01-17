@@ -40,11 +40,7 @@ export class CartButton {
     }
 
     decreaseItem() {
-        if (this.product.qty > 0) {
-            this.cartService.decreaseItem(this.product);
-        } else {
-            this.addItem();
-        }
+        this.cartService.decreaseItem(this.product);
     }
 
     increaseItem() {
