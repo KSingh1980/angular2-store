@@ -31,7 +31,6 @@ export class CartService {
         this.cart$ = new Observable((observer: any) => {
             this._cartObserver = observer;
         }).share();
-        this.cart$.subscribe();
     }
 
     getProduct(id: string) {
