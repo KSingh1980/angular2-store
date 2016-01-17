@@ -1,29 +1,28 @@
 import { Component } from 'angular2/core';
-import { StoreService }  from '../../service/store-service';
 import { CartService }  from '../../service/cart-service';
 import { RouterLink } from 'angular2/router';
+import { CartButton } from '../cart/cart-button';
 
 @Component({
-    directives: [RouterLink],
+    directives: [RouterLink, CartButton],
     selector: '[catalog]',
     template: require('./catalog.html')
 })
 
 export class Catalog {
     products: Array<any>;
-    constructor(private storeService:StoreService,private cartService:CartService) {
+    constructor(private cartService: CartService) {
+        cartService.cart$.subscribe(updatedCart => {
+            this.getCatalog();
+        });
     }
 
     getCatalog() {
-        this.storeService.getCatalog().then(res => this.products = res);
-        this.cartService.getCart();
+        this.cartService.getCatalog().subscribe(res => this.products = res);
     }
 
     ngOnInit() {
         this.getCatalog();
     }
 
-    addItem(product) {
-        this.storeService.addItem(product).then(data => this.getCatalog());
-    }
 }

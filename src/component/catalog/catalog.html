@@ -8,7 +8,7 @@
             ({{ product.cart[0].qty }} in cart)</span></p>
             <div class="btn-group">
                 <a class="btn btn-default" [routerLink]="['ProductDetail', {productId: product.id}]">Learn More</a>
-                <a class="btn btn-default" (click)="addItem(product)">
+                <a cart-button [product]="product" action="add" class="btn btn-default">
                     Add To Cart
                 </a>
             </div>
