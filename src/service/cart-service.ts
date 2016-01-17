@@ -41,6 +41,30 @@ export class CartService {
         });
     }
 
+    getCartByProduct(id: number) {
+        return this.transact('get', `${BASE_URL}/cart/?productId=${id}`);
+    }
+
+    addItem(product: CartItem) {
+        this.getCartByProduct(product.id).subscribe(res => {
+            if (res[0]) {
+                this.increaseItem(res[0]);
+            } else {
+                let item = {
+                    id: 0,
+                    productId: product.id,
+                    qty: 1,
+                    price: product.price,
+                    title: product.title
+                };
+                this.transact('post', `${BASE_URL}/cart`, item).subscribe(res => {
+                    this._cartStore.cart.push(res);
+                    this._cartObserver.next(this._cartStore.cart);
+                });
+            }
+        });
+    }
+
     increaseItem(cartItem: CartItem) {
         this.transact('patch', `${BASE_URL}/cart/${cartItem.id}`, {qty: cartItem.qty + 1}).subscribe(() => {
             this._cartStore.cart.find(item => cartItem.id === item.id).qty++;

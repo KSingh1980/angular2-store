@@ -13,7 +13,7 @@
       <tbody>
         <tr *ngFor="#product of products">
             <td>
-            <a class="btn btn-default btn-sm" (click)="removeItem(product)">
+            <a cart-button [product]="product" action="remove" class="btn btn-default btn-sm">
                 X
             </a>
             </td>
@@ -21,8 +21,8 @@
             <td>{{product.qty}}</td>
             <td>
             <div class="btn-group">
-                <a class="btn btn-default btn-sm" (click)="decreaseItem(product)">-</a>
-                <a class="btn btn-default btn-sm" (click)="increaseItem(product)">+</a>
+                <a cart-button [product]="product" action="decrease" class="btn btn-default btn-sm">-</a>
+                <a cart-button [product]="product" action="increase" class="btn btn-default btn-sm">+</a>
             </div>
             </td>
             <td>${{product.qty*product.price | number: '.2'}}</td>

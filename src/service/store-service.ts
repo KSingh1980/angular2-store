@@ -1,5 +1,5 @@
 /**
- * Service useing Promises
+ * Service using Promises
  */
 
 import { Http, Headers } from 'angular2/http';
@@ -32,7 +32,7 @@ export class StoreService {
     addItem(product: CartItem) {
         return this.getCartByProduct(product.id).then(res => {
             if (res[0]) {
-                return this.increaseItem(res[0])
+                return this.increaseItem(res[0]);
             } else {
                 let item = {
                     id: 0,
