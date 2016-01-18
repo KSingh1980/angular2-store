@@ -43,7 +43,7 @@ export class CartService {
     getCart() {
         this.http.get(`${BASE_URL}/cart`).subscribe(data => {
             this._cartStore.cart = data.json();
-            this._cartObserver.next(this._cartStore.cart);
+            this._cartObserver.next(this._cartStore.cart.slice(0));
         });
     }
 
@@ -65,7 +65,7 @@ export class CartService {
                 };
                 this.transact('post', `${BASE_URL}/cart`, item).subscribe(res => {
                     this._cartStore.cart.push(res);
-                    this._cartObserver.next(this._cartStore.cart);
+                    this._cartObserver.next(this._cartStore.cart.slice(0));
                 });
             }
         });
@@ -74,7 +74,7 @@ export class CartService {
     increaseItem(cartItem: CartItem) {
         this.transact('patch', `${BASE_URL}/cart/${cartItem.id}`, {qty: cartItem.qty + 1}).subscribe(() => {
             this._cartStore.cart.find(item => cartItem.id === item.id).qty++;
-            this._cartObserver.next(this._cartStore.cart);
+            this._cartObserver.next(this._cartStore.cart.slice(0));
         });
     }
 
@@ -82,7 +82,7 @@ export class CartService {
         if (cartItem.qty > 1) {
             this.transact('patch', `${BASE_URL}/cart/${cartItem.id}`, {qty: cartItem.qty - 1}).subscribe(() => {
                 this._cartStore.cart.find(item => cartItem.id === item.id).qty--;
-                this._cartObserver.next(this._cartStore.cart);
+                this._cartObserver.next(this._cartStore.cart.slice(0));
             });
         } else {
             this.removeItem(cartItem);
@@ -92,7 +92,7 @@ export class CartService {
     removeItem(cartItem: CartItem) {
         this.transact('delete', `${BASE_URL}/cart/${cartItem.id}`).subscribe(() => {
             this._cartStore.cart = this._cartStore.cart.filter(item => cartItem.id !== item.id);
-            this._cartObserver.next(this._cartStore.cart);
+            this._cartObserver.next(this._cartStore.cart.slice(0));
         });
     }
 
