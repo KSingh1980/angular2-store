@@ -6,7 +6,6 @@ import {Http, Headers } from 'angular2/http';
 import {Injectable} from 'angular2/core';
 import {CartItem} from '../model/cart-item-model.ts';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/share';
 
