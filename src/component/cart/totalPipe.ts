@@ -1,6 +1,6 @@
 import { Pipe } from 'angular2/core';
 
-@Pipe({name: 'cartTotal'})
+@Pipe({name: 'cartTotal', pure: false})
 export class TotalPipe {
     transform(value) {
         let total = 0;
